@@ -1,0 +1,30 @@
+.btn {
+  color: $btn-font-color;
+  &:hover {
+    opacity: 90%;
+  }
+  &--ingredient {
+    background-color: $btn-bg-color-ingredient !important;
+    color: $btn-font-color !important;
+    &::placeholder {
+      color: #ffffff;
+      opacity: 50%;
+    }
+  }
+  &--appliance {
+    background-color: $btn-bg-color-appliance;
+    color: $btn-font-color !important;
+    &::placeholder {
+      color: #ffffff;
+      opacity: 50%;
+    }
+  }
+  &--ustensile {
+    background-color: $btn-bg-color-ustensile;
+    color: $btn-font-color !important;
+    &::placeholder {
+      color: #ffffff;
+      opacity: 50%;
+    }
+  }
+}
