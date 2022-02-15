@@ -3,7 +3,7 @@
   &:hover {
     opacity: 90%;
   }
-  &--ingredient {
+  &--ingredients {
     background-color: $btn-bg-color-ingredient !important;
     color: $btn-font-color !important;
     &::placeholder {
@@ -11,7 +11,7 @@
       opacity: 50%;
     }
   }
-  &--appliance {
+  &--appareil {
     background-color: $btn-bg-color-appliance;
     color: $btn-font-color !important;
     &::placeholder {
@@ -19,7 +19,7 @@
       opacity: 50%;
     }
   }
-  &--ustensile {
+  &--ustensils {
     background-color: $btn-bg-color-ustensile;
     color: $btn-font-color !important;
     &::placeholder {

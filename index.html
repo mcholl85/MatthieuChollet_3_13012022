@@ -52,13 +52,13 @@
       </svg>
       <h1 class="fs-1 fw-bold">Les petits plats</h1>
     </header>
-    <main>
+    <main class="position-relative">
       <section class="mt-4">
         <div class="input-group">
           <input
             class="form-control ps-3 border-0 shadow-none bg-search"
             type="text"
-            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+            placeholder="Rechercher un ingrédient, appareil, ustensils ou une recette"
           />
           <span class="input-group-text border-0 bg-search">
             <em class="bi bi-search fs-2 pe-2"></em>
@@ -68,97 +68,100 @@
       <section id="keyword" class="d-flex gap-2 pt-3"></section>
       <section
         id="filters"
-        class="d-flex flex-nowrap gap-2 justify-content-start pt-3"
+        class="position-absolute z-index-1 d-flex flex-nowrap gap-2 justify-content-start pt-3"
       >
         <button
           id="btnIngredient"
-          class="h-25 btn btn--ingredient py-3 fw-bold d-flex fs-5 shadow-none overflow-visible"
+          class="h-25 btn btn--ingredients py-3 fw-bold d-flex fs-5 shadow-none overflow-visible"
         >
           Ingrédients
           <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
         </button>
         <div
-          id="ingredient"
-          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--ingredient"
+          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--ingredients"
         >
           <div class="d-flex justify-content-between">
             <input
-              class="btn--ingredient w-100 fs-5 shadow-none border-0 pe-2"
+              id="ingredients"
+              name="advancedSearch"
+              class="btn--ingredients w-100 fs-5 shadow-none border-0 pe-2"
               type="text"
               placeholder="Recherche un ingrédient"
             />
             <button
               name="closeFilter"
-              class="btn--ingredient d-flex justify-content-center align-items-center border-0 overflow-hidden"
+              class="btn--ingredients d-flex justify-content-center align-items-center border-0 overflow-hidden"
             >
               <em class="fas fa-angle-up pe-2 fs-4"></em>
             </button>
           </div>
           <div
-            id="listIngredients"
-            class="row row-cols-3 fs-5 pb-3 btn--ingredient"
+            id="filter-ingredients"
+            class="row row-cols-3 fs-5 pb-3 btn--ingredients"
           ></div>
         </div>
         <button
           id="btnAppliance"
-          class="h-25 btn btn--appliance py-3 fw-bold d-flex fs-5 shadow-none"
+          class="h-25 btn btn--appareil py-3 fw-bold d-flex fs-5 shadow-none"
         >
           Appareil
           <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
         </button>
         <div
-          id="appliance"
-          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--appliance"
+          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--appareil"
         >
           <div class="d-flex justify-content-between">
             <input
-              class="btn--appliance w-100 fs-5 shadow-none border-0 pe-2"
+              id="appareil"
+              name="advancedSearch"
+              class="btn--appareil w-100 fs-5 shadow-none border-0 pe-2"
               type="text"
               placeholder="Recherche un appareil"
             />
             <button
               name="closeFilter"
-              class="btn--appliance d-flex justify-content-center align-items-center border-0 overflow-hidden"
+              class="btn--appareil d-flex justify-content-center align-items-center border-0 overflow-hidden"
             >
               <em class="fas fa-angle-up pe-2 fs-4"></em>
             </button>
           </div>
           <div
-            id="listAppliances"
-            class="row row-cols-3 fs-5 pb-3 btn--appliance"
+            id="filter-appareil"
+            class="row row-cols-3 fs-5 pb-3 btn--appareil"
           ></div>
         </div>
         <button
           id="btnUstensile"
-          class="h-25 btn btn--ustensile py-3 fw-bold d-flex fs-5 shadow-none"
+          class="h-25 btn btn--ustensils py-3 fw-bold d-flex fs-5 shadow-none"
         >
-          Ustensiles
+          ustensils
           <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
         </button>
         <div
-          id="ustensile"
-          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--ustensile"
+          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--ustensils"
         >
           <div class="d-flex justify-content-between">
             <input
-              class="btn--ustensile fs-5 shadow-none border-0 pe-2"
+              id="ustensils"
+              name="advancedSearch"
+              class="btn--ustensils fs-5 shadow-none border-0 pe-2"
               type="text"
               placeholder="Recherche un ustensile"
             />
             <button
               name="closeFilter"
-              class="btn--ustensile d-flex justify-content-center align-items-center border-0 overflow-hidden"
+              class="btn--ustensils d-flex justify-content-center align-items-center border-0 overflow-hidden"
             >
               <em class="fas fa-angle-up pe-2 fs-4"></em>
             </button>
           </div>
           <div
-            id="listUstensiles"
-            class="row row-cols-3 justify-content-between fs-5 pb-3 btn--ustensile"
+            id="filter-ustensils"
+            class="row row-cols-3 justify-content-between fs-5 pb-3 btn--ustensils"
           ></div>
         </div>
       </section>
-      <section id="recipe" class="row row-cols-3 pt-4 gy-5"></section>
+      <section id="recipe" class="row row-cols-3 pt-2 mt-5 gy-5"></section>
     </main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

@@ -4,27 +4,27 @@
 .btn:hover {
   opacity: 90%;
 }
-.btn--ingredient {
+.btn--ingredients {
   background-color: #3282f7 !important;
   color: #ffffff !important;
 }
-.btn--ingredient::placeholder {
+.btn--ingredients::placeholder {
   color: #ffffff;
   opacity: 50%;
 }
-.btn--appliance {
+.btn--appareil {
   background-color: #68d9a4;
   color: #ffffff !important;
 }
-.btn--appliance::placeholder {
+.btn--appareil::placeholder {
   color: #ffffff;
   opacity: 50%;
 }
-.btn--ustensile {
+.btn--ustensils {
   background-color: #ed6454;
   color: #ffffff !important;
 }
-.btn--ustensile::placeholder {
+.btn--ustensils::placeholder {
   color: #ffffff;
   opacity: 50%;
 }
@@ -67,6 +67,14 @@ input:focus-visible {
 
 em.bi::before {
   font-weight: 800 !important;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.mw-200 {
+  min-width: 200px;
 }
 
 .card-title {
