@@ -18,8 +18,7 @@ export default class Search {
         data: new Set(),
       },
     ];
-    this.names = new Set();
-    this.description = new Set();
+    this.global = new Set();
   }
 
   getFilter(element) {
@@ -30,38 +29,36 @@ export default class Search {
     return this.getFilter(element).data;
   }
 
-  addDataIntoFilter(data, filter) {
-    this.getFilter(filter).add(data);
-  }
-
-  deleteDataIntoFilter(data, filter) {
-    this.getFilter(filter).delete(data);
-  }
-
   getElementsFilter(filterKey) {
     if (filterKey === 'ingredients') {
-      return this.recipes.ingredients().filter((ingredient) => {
-        if (this.getDataFilter(filterKey).has(ingredient.toLowerCase())) {
-          return false;
-        }
-        return true;
-      });
+      return this.search()
+        .ingredients()
+        .filter((ingredient) => {
+          if (this.getDataFilter(filterKey).has(ingredient.toLowerCase())) {
+            return false;
+          }
+          return true;
+        });
     }
     if (filterKey === 'ustensils') {
-      return this.recipes.ustensils().filter((ustensil) => {
-        if (this.getDataFilter(filterKey).has(ustensil.toLowerCase())) {
-          return false;
-        }
-        return true;
-      });
+      return this.search()
+        .ustensils()
+        .filter((ustensil) => {
+          if (this.getDataFilter(filterKey).has(ustensil.toLowerCase())) {
+            return false;
+          }
+          return true;
+        });
     }
     if (filterKey === 'appareil') {
-      return this.recipes.appliances().filter((appliance) => {
-        if (this.getDataFilter(filterKey).has(appliance.toLowerCase())) {
-          return false;
-        }
-        return true;
-      });
+      return this.search()
+        .appliances()
+        .filter((appliance) => {
+          if (this.getDataFilter(filterKey).has(appliance.toLowerCase())) {
+            return false;
+          }
+          return true;
+        });
     }
     return new Error('wrong filterKey');
   }
@@ -89,16 +86,15 @@ export default class Search {
       }
     });
 
-    if (this.names.size > 0) {
-      this.names.forEach((title) => {
-        results = results.findByGlobal(title);
+    if (this.global.size > 0) {
+      this.global.forEach((elt) => {
+        results = results.findByGlobal(elt);
       });
     }
-    console.log(results);
-    return results.recipes;
+    return results;
   }
 
-  searchFilter() {
+  searchFilters() {
     this.filters.forEach((filter) => {
       const wrapperFilter = document.getElementById(`filter-${filter.key}`);
       const input = document.getElementById(filter.key);
@@ -124,6 +120,23 @@ export default class Search {
     });
   }
 
+  searchGlobal() {
+    const input = document.getElementById('global');
+
+    input.addEventListener('input', (event) => {
+      const search = event.target.value.toLowerCase();
+
+      if (search.length > 2) {
+        const results = this.search().findByGlobal(search);
+
+        RecipeCard.createRecipes(results);
+      } else {
+        this.global = {};
+        RecipeCard.createRecipes(this.search());
+      }
+    });
+  }
+
   removeKeyWord(keyWord, filter) {
     const wrapperKeyword = document.getElementById('keyword');
     const keyWordTxt = keyWord.querySelector('small').innerText.toLowerCase();
@@ -131,6 +144,7 @@ export default class Search {
     keyWord.addEventListener('click', () => {
       wrapperKeyword.removeChild(keyWord);
       filter.data.delete(keyWordTxt);
+      RecipeCard.createRecipes(this.search());
       this.createFilters();
     });
   }
@@ -151,12 +165,13 @@ export default class Search {
 
   createFilter(filter) {
     const wrapperFilter = document.getElementById(`filter-${filter.key}`);
+    const elements = this.getElementsFilter(filter.key);
 
     wrapperFilter.innerHTML = '';
-    const elements = this.getElementsFilter(filter.key);
 
     elements.forEach((element) => {
       const link = Filters.link(element);
+
       wrapperFilter.appendChild(link);
       this.createKeyWord(link, filter);
     });

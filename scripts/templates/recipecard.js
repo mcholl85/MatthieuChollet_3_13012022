@@ -46,6 +46,8 @@ export default class RecipeCard {
     const wrapper = document.getElementById('recipe');
     wrapper.innerHTML = '';
 
-    Recipes.forEach((recipe) => wrapper.append(this.createRecipe(recipe)));
+    Recipes.recipes.forEach((recipe) => {
+      wrapper.append(this.createRecipe(recipe));
+    });
   }
 }

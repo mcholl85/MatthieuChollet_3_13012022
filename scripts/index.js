@@ -12,4 +12,5 @@ RecipeCard.createRecipes(results.search());
 Filters.init();
 
 results.createFilters();
-results.searchFilter();
+results.searchFilters();
+results.searchGlobal();
