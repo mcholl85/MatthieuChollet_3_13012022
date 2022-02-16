@@ -18,7 +18,7 @@ export default class Search {
         data: new Set(),
       },
     ];
-    this.global = new Set();
+    this.global = '';
   }
 
   getFilter(element) {
@@ -29,7 +29,7 @@ export default class Search {
     return this.getFilter(element).data;
   }
 
-  getElementsFilter(filterKey) {
+  getElementsByFilter(filterKey) {
     if (filterKey === 'ingredients') {
       return this.search()
         .ingredients()
@@ -86,10 +86,8 @@ export default class Search {
       }
     });
 
-    if (this.global.size > 0) {
-      this.global.forEach((elt) => {
-        results = results.findByGlobal(elt);
-      });
+    if (this.global) {
+      results = results.findByGlobal(this.global);
     }
     return results;
   }
@@ -101,7 +99,7 @@ export default class Search {
 
       input.addEventListener('input', (event) => {
         const query = event.target.value.toLowerCase();
-        const data = Array.from(this.getElementsFilter(filter.key));
+        const data = Array.from(this.getElementsByFilter(filter.key));
 
         if (query.length > 2) {
           const dataFiltered = data.filter((elt) => elt.includes(query));
@@ -120,20 +118,22 @@ export default class Search {
     });
   }
 
-  searchGlobal() {
+  searchAll() {
     const input = document.getElementById('global');
 
     input.addEventListener('input', (event) => {
       const search = event.target.value.toLowerCase();
+      let results;
 
       if (search.length > 2) {
-        const results = this.search().findByGlobal(search);
-
-        RecipeCard.createRecipes(results);
+        this.global = search;
+        results = this.search().findByGlobal(search);
       } else {
-        this.global = {};
-        RecipeCard.createRecipes(this.search());
+        this.global = '';
+        results = this.search();
       }
+
+      this.refresh(results);
     });
   }
 
@@ -144,8 +144,7 @@ export default class Search {
     keyWord.addEventListener('click', () => {
       wrapperKeyword.removeChild(keyWord);
       filter.data.delete(keyWordTxt);
-      RecipeCard.createRecipes(this.search());
-      this.createFilters();
+      this.refresh(this.search());
     });
   }
 
@@ -158,14 +157,14 @@ export default class Search {
       wrapperKeyword.append(keyWord);
       filter.data.add(link.innerText.toLowerCase());
       this.removeKeyWord(keyWord, filter);
-      this.createFilters();
-      RecipeCard.createRecipes(this.search());
+
+      this.refresh(this.search());
     });
   }
 
   createFilter(filter) {
     const wrapperFilter = document.getElementById(`filter-${filter.key}`);
-    const elements = this.getElementsFilter(filter.key);
+    const elements = this.getElementsByFilter(filter.key);
 
     wrapperFilter.innerHTML = '';
 
@@ -181,5 +180,10 @@ export default class Search {
     this.filters.forEach((filter) => {
       this.createFilter(filter);
     });
+  }
+
+  refresh(Recipes) {
+    this.createFilters();
+    RecipeCard.createRecipes(Recipes);
   }
 }

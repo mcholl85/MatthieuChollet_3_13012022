@@ -13,4 +13,4 @@ Filters.init();
 
 results.createFilters();
 results.searchFilters();
-results.searchGlobal();
+results.searchAll();

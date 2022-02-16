@@ -5,6 +5,10 @@ export default class Recipes {
     this.recipes = recipes.map((recipe) => new Recipe(recipe));
   }
 
+  isEmpty() {
+    return !this.recipes.length;
+  }
+
   findByIngredient(search) {
     return new Recipes(
       this.recipes.filter((recipe) => recipe.ingredientsIncludes(search)),

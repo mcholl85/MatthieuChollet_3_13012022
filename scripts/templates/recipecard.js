@@ -44,10 +44,25 @@ export default class RecipeCard {
 
   static createRecipes(Recipes) {
     const wrapper = document.getElementById('recipe');
+
     wrapper.innerHTML = '';
 
-    Recipes.recipes.forEach((recipe) => {
-      wrapper.append(this.createRecipe(recipe));
-    });
+    if (Recipes.isEmpty()) {
+      wrapper.append(this.createMsgError());
+    } else {
+      Recipes.recipes.forEach((recipe) => {
+        wrapper.append(this.createRecipe(recipe));
+      });
+    }
+  }
+
+  static createMsgError() {
+    const msgError = document.createElement('p');
+
+    msgError.classList.add('w-100');
+    msgError.innerText =
+      'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.';
+
+    return msgError;
   }
 }
