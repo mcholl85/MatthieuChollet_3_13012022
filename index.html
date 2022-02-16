@@ -57,7 +57,7 @@
         <div class="input-group">
           <input
             id="global"
-            class="form-control ps-3 border-0 shadow-none bg-search"
+            class="form-control ps-3 border-0 shadow-none bg-search text-truncate"
             type="text"
             placeholder="Rechercher un ingrédient, appareil, ustensils ou une recette"
           />
@@ -66,105 +66,107 @@
           </span>
         </div>
       </section>
-      <section id="keyword" class="d-flex gap-2 pt-3"></section>
-      <section
-        id="filters"
-        class="position-absolute z-index-1 d-flex flex-nowrap gap-2 justify-content-start pt-3"
-      >
-        <button
-          id="btnIngredient"
-          class="h-25 btn btn--ingredients py-3 fw-bold d-flex fs-5 shadow-none overflow-visible"
-        >
-          Ingrédients
-          <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
-        </button>
+      <section id="keyword" class="d-flex gap-2 pt-0 pt-lg-3"></section>
+      <section class="container pt-3">
         <div
-          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--ingredients"
+          id="filters"
+          class="row w-lg-100 position-lg-absolute z-index-1 gap-1 gap-lg-2"
         >
-          <div class="d-flex justify-content-between">
-            <input
-              id="ingredients"
-              name="advancedSearch"
-              class="btn--ingredients w-100 fs-5 shadow-none border-0 pe-2"
-              type="text"
-              placeholder="Recherche un ingrédient"
-            />
-            <button
-              name="closeFilter"
-              class="btn--ingredients d-flex justify-content-center align-items-center border-0 overflow-hidden"
-            >
-              <em class="fas fa-angle-up pe-2 fs-4"></em>
-            </button>
-          </div>
+          <button
+            id="btnIngredient"
+            class="col-12 col-lg-2 h-25 btn btn--ingredients py-3 fw-bold d-flex justify-content-between fs-5 shadow-none overflow-visible"
+          >
+            Ingrédients
+            <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
+          </button>
           <div
-            id="filter-ingredients"
-            class="row row-cols-3 fs-5 pb-3 btn--ingredients"
-          ></div>
-        </div>
-        <button
-          id="btnAppliance"
-          class="h-25 btn btn--appareil py-3 fw-bold d-flex fs-5 shadow-none"
-        >
-          Appareil
-          <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
-        </button>
-        <div
-          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--appareil"
-        >
-          <div class="d-flex justify-content-between">
-            <input
-              id="appareil"
-              name="advancedSearch"
-              class="btn--appareil w-100 fs-5 shadow-none border-0 pe-2"
-              type="text"
-              placeholder="Recherche un appareil"
-            />
-            <button
-              name="closeFilter"
-              class="btn--appareil d-flex justify-content-center align-items-center border-0 overflow-hidden"
-            >
-              <em class="fas fa-angle-up pe-2 fs-4"></em>
-            </button>
+            class="d-none col-12 col-lg-6 border-0 px-3 rounded-2 overflow-hidden btn--ingredients"
+          >
+            <div class="d-flex justify-content-between">
+              <input
+                id="ingredients"
+                name="advancedSearch"
+                class="btn--ingredients w-100 fs-5 shadow-none border-0 pe-2"
+                type="text"
+                placeholder="Recherche un ingrédient"
+              />
+              <button
+                name="closeFilter"
+                class="btn--ingredients d-flex justify-content-center align-items-center border-0 overflow-hidden"
+              >
+                <em class="fas fa-angle-up pe-2 fs-4"></em>
+              </button>
+            </div>
+            <div
+              id="filter-ingredients"
+              class="row row-cols-3 fs-5 pb-3 btn--ingredients"
+            ></div>
           </div>
+          <button
+            id="btnAppliance"
+            class="col-12 col-lg-2 h-25 btn btn--appareil py-3 fw-bold d-flex justify-content-between fs-5 shadow-none"
+          >
+            Appareil
+            <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
+          </button>
           <div
-            id="filter-appareil"
-            class="row row-cols-3 fs-5 pb-3 btn--appareil"
-          ></div>
-        </div>
-        <button
-          id="btnUstensile"
-          class="h-25 btn btn--ustensils py-3 fw-bold d-flex fs-5 shadow-none"
-        >
-          ustensils
-          <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
-        </button>
-        <div
-          class="d-none border-0 px-3 rounded-2 overflow-hidden btn--ustensils"
-        >
-          <div class="d-flex justify-content-between">
-            <input
-              id="ustensils"
-              name="advancedSearch"
-              class="btn--ustensils fs-5 shadow-none border-0 pe-2"
-              type="text"
-              placeholder="Recherche un ustensile"
-            />
-            <button
-              name="closeFilter"
-              class="btn--ustensils d-flex justify-content-center align-items-center border-0 overflow-hidden"
-            >
-              <em class="fas fa-angle-up pe-2 fs-4"></em>
-            </button>
+            class="d-none col-12 col-lg-6 border-0 px-3 rounded-2 overflow-hidden btn--appareil"
+          >
+            <div class="d-flex justify-content-between">
+              <input
+                id="appareil"
+                name="advancedSearch"
+                class="btn--appareil w-100 fs-5 shadow-none border-0 pe-2"
+                type="text"
+                placeholder="Recherche un appareil"
+              />
+              <button
+                name="closeFilter"
+                class="btn--appareil d-flex justify-content-center align-items-center border-0 overflow-hidden"
+              >
+                <em class="fas fa-angle-up pe-2 fs-4"></em>
+              </button>
+            </div>
+            <div
+              id="filter-appareil"
+              class="row row-cols-3 fs-5 pb-3 btn--appareil"
+            ></div>
           </div>
+          <button
+            id="btnUstensile"
+            class="col-12 col-lg-2 h-25 btn btn--ustensils py-3 fw-bold d-flex justify-content-between fs-5 shadow-none"
+          >
+            Ustensils
+            <em class="fas fa-angle-down ps-2 fs-4 align-self-end pe-none"></em>
+          </button>
           <div
-            id="filter-ustensils"
-            class="row row-cols-3 justify-content-between fs-5 pb-3 btn--ustensils"
-          ></div>
+            class="d-none col-12 col-lg-6 border-0 px-3 rounded-2 overflow-hidden btn--ustensils"
+          >
+            <div class="d-flex justify-content-between">
+              <input
+                id="ustensils"
+                name="advancedSearch"
+                class="btn--ustensils fs-5 shadow-none border-0 pe-2"
+                type="text"
+                placeholder="Recherche un ustensile"
+              />
+              <button
+                name="closeFilter"
+                class="btn--ustensils d-flex justify-content-center align-items-center border-0 overflow-hidden"
+              >
+                <em class="fas fa-angle-up pe-2 fs-4"></em>
+              </button>
+            </div>
+            <div
+              id="filter-ustensils"
+              class="row row-cols-3 justify-content-between fs-5 pb-3 btn--ustensils"
+            ></div>
+          </div>
         </div>
       </section>
       <section
         id="recipe"
-        class="row row-cols-sm-1 row-cols-lg-3 pt-2 mt-5 gy-5"
+        class="row row-cols-sm-1 row-cols-lg-3 pt-1 pt-lg-2 mt-1 mt-lg-5 gy-3 gy-lg-5"
       ></section>
     </main>
     <script
