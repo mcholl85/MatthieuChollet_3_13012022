@@ -124,10 +124,17 @@ export default class Search {
     input.addEventListener('input', (event) => {
       const search = event.target.value.toLowerCase();
       let results;
+      let t0;
+      let t1;
 
       if (search.length > 2) {
         this.global = search;
+        t0 = performance.now();
         results = this.search().findByGlobal(search);
+        t1 = performance.now();
+        console.log(
+          `La recherche a demandé ${(t1 - t0).toFixed(2)}millisecondes`,
+        );
       } else {
         this.global = '';
         results = this.search();

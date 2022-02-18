@@ -13,22 +13,26 @@ export default class Recipe {
   ingredientsIncludes(search) {
     let match = false;
 
-    this.ingredients.forEach((item) => {
-      if (item.ingredient.toLowerCase().includes(search.toLowerCase())) {
+    for (let index = 0; index < this.ingredients.length; index += 1) {
+      const element = this.ingredients[index].ingredient.toLowerCase();
+
+      if (element.includes(search.toLowerCase())) {
         match = true;
       }
-    });
+    }
     return match;
   }
 
   ustensilsIncludes(search) {
     let match = false;
 
-    this.ustensils.forEach((ustensil) => {
-      if (ustensil.toLowerCase().includes(search.toLowerCase())) {
+    for (let index = 0; index < this.ustensils.length; index += 1) {
+      const element = this.ustensils[index].toLowerCase();
+
+      if (element.includes(search.toLowerCase())) {
         match = true;
       }
-    });
+    }
     return match;
   }
 

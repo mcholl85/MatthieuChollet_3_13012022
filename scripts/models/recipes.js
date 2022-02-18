@@ -2,7 +2,15 @@ import Recipe from './recipe.js';
 
 export default class Recipes {
   constructor(recipes) {
-    this.recipes = recipes.map((recipe) => new Recipe(recipe));
+    const results = [];
+
+    for (let index = 0; index < recipes.length; index += 1) {
+      const element = new Recipe(recipes[index]);
+
+      results.push(element);
+    }
+
+    this.recipes = results;
   }
 
   isEmpty() {
@@ -10,38 +18,60 @@ export default class Recipes {
   }
 
   findByIngredient(search) {
-    return new Recipes(
-      this.recipes.filter((recipe) => recipe.ingredientsIncludes(search)),
-    );
+    const results = [];
+
+    for (let index = 0; index < this.recipes.length; index += 1) {
+      const element = this.recipes[index];
+
+      if (element.ingredientsIncludes(search)) {
+        results.push(element);
+      }
+    }
+    return new Recipes(results);
   }
 
   findByUstensil(search) {
-    return new Recipes(
-      this.recipes.filter((recipe) => recipe.ustensilsIncludes(search)),
-    );
+    const results = [];
+
+    for (let index = 0; index < this.recipes.length; index += 1) {
+      const element = this.recipes[index];
+
+      if (element.ustensilsIncludes(search)) {
+        results.push(element);
+      }
+    }
+    return new Recipes(results);
   }
 
   findByAppliance(search) {
-    return new Recipes(
-      this.recipes.filter((recipe) => recipe.applianceIncludes(search)),
-    );
+    const results = [];
+
+    for (let index = 0; index < this.recipes.length; index += 1) {
+      const element = this.recipes[index];
+
+      if (element.applianceIncludes(search)) {
+        results.push(element);
+      }
+    }
+    return new Recipes(results);
   }
 
   findByGlobal(search) {
-    return new Recipes(
-      this.recipes.filter((recipe) => {
-        if (recipe.ingredientsIncludes(search)) {
-          return true;
-        }
-        if (recipe.nameIncludes(search)) {
-          return true;
-        }
-        if (recipe.descriptionIncludes(search)) {
-          return true;
-        }
-        return false;
-      }),
-    );
+    const results = [];
+
+    for (let index = 0; index < this.recipes.length; index += 1) {
+      const element = this.recipes[index];
+
+      if (element.ingredientsIncludes(search)) {
+        results.push(element);
+      } else if (element.nameIncludes(search)) {
+        results.push(element);
+      } else if (element.descriptionIncludes(search)) {
+        results.push(element);
+      }
+    }
+
+    return new Recipes(results);
   }
 
   ingredients() {
