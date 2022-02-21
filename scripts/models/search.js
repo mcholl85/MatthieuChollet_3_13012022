@@ -18,7 +18,7 @@ export default class Search {
         data: new Set(),
       },
     ];
-    this.global = '';
+    this.global = new Set();
   }
 
   getFilter(element) {
@@ -86,8 +86,10 @@ export default class Search {
       }
     });
 
-    if (this.global) {
-      results = results.findByGlobal(this.global);
+    if (!this.global.length) {
+      this.global.forEach((data) => {
+        results = results.findByGlobal(data);
+      });
     }
     return results;
   }
@@ -122,21 +124,24 @@ export default class Search {
     const input = document.getElementById('global');
 
     input.addEventListener('input', (event) => {
-      const search = event.target.value.toLowerCase();
+      const query = event.target.value.toLowerCase();
       let results;
       let t0;
       let t1;
 
-      if (search.length > 2) {
-        this.global = search;
+      this.global = new Set(query.split(' '));
+
+      if (query.length > 2) {
         t0 = performance.now();
-        results = this.search().findByGlobal(search);
+        this.global.forEach((data) => {
+          results = this.search().findByGlobal(data);
+        });
         t1 = performance.now();
         console.log(
           `La recherche a demandé ${(t1 - t0).toFixed(2)}millisecondes`,
         );
       } else {
-        this.global = '';
+        this.global = new Set();
         results = this.search();
       }
 
