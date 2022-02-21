@@ -1,0 +1,38 @@
+input {
+  height: 69px;
+  &:focus-visible {
+    outline: 0;
+  }
+}
+
+.bg-search {
+  background-color: $background-color-secondary !important;
+}
+
+.dropdown-toggle::after {
+  border: 0;
+}
+
+em.bi {
+  &::before {
+    font-weight: 800 !important;
+  }
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.mw-200 {
+  min-width: 200px;
+}
+
+@media (min-width: 992px) {
+  .position-lg-absolute {
+    position: absolute !important;
+  }
+
+  .w-lg-100 {
+    width: 100% !important;
+  }
+}

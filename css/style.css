@@ -1,0 +1,107 @@
+.btn {
+  color: #ffffff;
+}
+.btn:hover {
+  opacity: 90%;
+}
+.btn--ingredients {
+  background-color: #3282f7 !important;
+  color: #ffffff !important;
+}
+.btn--ingredients::placeholder {
+  color: #ffffff;
+  opacity: 50%;
+}
+.btn--appareil {
+  background-color: #68d9a4;
+  color: #ffffff !important;
+}
+.btn--appareil::placeholder {
+  color: #ffffff;
+  opacity: 50%;
+}
+.btn--ustensils {
+  background-color: #ed6454;
+  color: #ffffff !important;
+}
+.btn--ustensils::placeholder {
+  color: #ffffff;
+  opacity: 50%;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+  font-family: "DM Sans", sans-serif;
+  color: #d04f4f;
+}
+
+input {
+  height: 69px;
+}
+input:focus-visible {
+  outline: 0;
+}
+
+.bg-search {
+  background-color: #e7e7e7 !important;
+}
+
+.dropdown-toggle::after {
+  border: 0;
+}
+
+em.bi::before {
+  font-weight: 800 !important;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.mw-200 {
+  min-width: 200px;
+}
+
+@media (min-width: 992px) {
+  .position-lg-absolute {
+    position: absolute !important;
+  }
+
+  .w-lg-100 {
+    width: 100% !important;
+  }
+}
+.card-title {
+  font-size: 18px;
+}
+.card-img-top {
+  background-color: #c7bebe;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.text-truncate-multiline {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+/*# sourceMappingURL=style.css.map */
