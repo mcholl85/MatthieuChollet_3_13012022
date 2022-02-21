@@ -58,4 +58,13 @@ export default class Filters {
 
     return link;
   }
+
+  static msgError(filterKey) {
+    const msgError = document.createElement('p');
+
+    msgError.classList.add('w-100');
+    msgError.innerText = `Aucun ${filterKey} n'est disponible.`;
+
+    return msgError;
+  }
 }
