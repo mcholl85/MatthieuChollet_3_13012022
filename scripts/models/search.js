@@ -107,12 +107,18 @@ export default class Search {
           const dataFiltered = data.filter((elt) => elt.includes(query));
 
           wrapperFilter.innerHTML = '';
-          dataFiltered.forEach((element) => {
-            const link = Filters.link(element);
+          if (dataFiltered.length) {
+            dataFiltered.forEach((element) => {
+              const link = Filters.link(element);
 
-            wrapperFilter.appendChild(link);
-            this.createKeyWord(link, filter);
-          });
+              wrapperFilter.appendChild(link);
+              this.createKeyWord(link, filter);
+            });
+          } else {
+            const msg = Filters.msgError(filter.key);
+
+            wrapperFilter.appendChild(msg);
+          }
         } else {
           this.createFilters();
         }
