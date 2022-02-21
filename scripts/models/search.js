@@ -180,12 +180,17 @@ export default class Search {
 
     wrapperFilter.innerHTML = '';
 
-    elements.forEach((element) => {
-      const link = Filters.link(element);
+    if (elements.length) {
+      elements.forEach((element) => {
+        const link = Filters.link(element);
 
-      wrapperFilter.appendChild(link);
-      this.createKeyWord(link, filter);
-    });
+        wrapperFilter.appendChild(link);
+        this.createKeyWord(link, filter);
+      });
+    } else {
+      const msg = Filters.msgError(filter.key);
+      wrapperFilter.appendChild(msg);
+    }
   }
 
   createFilters() {
