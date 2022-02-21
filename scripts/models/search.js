@@ -91,6 +91,7 @@ export default class Search {
         results = results.findByGlobal(data);
       });
     }
+
     return results;
   }
 
@@ -131,24 +132,24 @@ export default class Search {
 
     input.addEventListener('input', (event) => {
       const query = event.target.value.toLowerCase();
-      let results;
-      let t0;
-      let t1;
+      const t0 = performance.now();
 
       this.global = new Set(query.split(' '));
+      let results = this.search();
 
       if (query.length > 2) {
-        t0 = performance.now();
-        this.global.forEach((data) => {
-          results = this.search().findByGlobal(data);
-        });
-        t1 = performance.now();
+        for (let index = 0; index < this.global.length; index += 1) {
+          const element = this.global[index];
+
+          results = results.findByGlobal(element);
+        }
+
+        const t1 = performance.now();
         console.log(
-          `La recherche a demandé ${(t1 - t0).toFixed(2)}millisecondes`,
+          `La recherche native a demandé ${(t1 - t0).toFixed(2)}millisecondes`,
         );
       } else {
         this.global = new Set();
-        results = this.search();
       }
 
       this.refresh(results);
