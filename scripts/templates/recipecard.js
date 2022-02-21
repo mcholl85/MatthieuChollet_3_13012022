@@ -59,7 +59,7 @@ export default class RecipeCard {
   static createMsgError() {
     const msgError = document.createElement('p');
 
-    msgError.classList.add('w-100');
+    msgError.classList.add('w-100', 'fs-4', 'pt-5');
     msgError.innerText =
       'Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.';
 

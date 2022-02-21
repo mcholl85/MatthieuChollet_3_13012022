@@ -37,8 +37,6 @@ export default class Filters {
     button.classList.add(
       'btn',
       `btn--${filter}`,
-      'mt-2',
-      'mb-3',
       'shadow-none',
       'd-flex',
       'justify-content-between',
