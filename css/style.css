@@ -104,4 +104,80 @@ em.bi::before {
   white-space: normal;
 }
 
+span.switcher {
+  position: relative;
+  width: 125px;
+  height: 32px;
+  border-radius: 25px;
+}
+span.switcher input {
+  appearance: none;
+  position: relative;
+  width: 125px;
+  height: 32px;
+  border-radius: 25px;
+  background-color: #d04f4f;
+  outline: none;
+}
+span.switcher input:before, span.switcher input:after {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+}
+span.switcher input:before {
+  content: "For";
+  left: 15px;
+}
+span.switcher input:after {
+  content: "Map";
+  right: 10px;
+}
+span.switcher label {
+  z-index: 1;
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  border-radius: 20px;
+}
+span.switcher.switcher-1 input {
+  transition: 0.25s -0.1s;
+}
+span.switcher.switcher-1 input:checked {
+  background-color: #ffffff;
+}
+span.switcher.switcher-1 input:checked:before {
+  color: #ffffff;
+  transition: color 0.5s 0.2s;
+}
+span.switcher.switcher-1 input:checked:after {
+  color: #cccccc;
+  transition: color 0.5s;
+}
+span.switcher.switcher-1 input:checked + label {
+  left: 5px;
+  right: 75px;
+  background: #d04f4f;
+  transition: left 0.5s, right 0.4s 0.2s;
+}
+span.switcher.switcher-1 input:not(:checked) {
+  background: #d04f4f;
+  transition: background 0.5s -0.1s;
+}
+span.switcher.switcher-1 input:not(:checked):before {
+  color: #cccccc;
+  transition: color 0.5s;
+}
+span.switcher.switcher-1 input:not(:checked):after {
+  color: #d04f4f;
+  transition: color 0.5s 0.2s;
+}
+span.switcher.switcher-1 input:not(:checked) + label {
+  left: 75px;
+  right: 5px;
+  background: #ffffff;
+  transition: left 0.4s 0.2s, right 0.5s, background 0.35s -0.1s;
+}
+
 /*# sourceMappingURL=style.css.map */
