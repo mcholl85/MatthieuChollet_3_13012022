@@ -132,24 +132,19 @@ export default class Search {
 
     input.addEventListener('input', (event) => {
       const query = event.target.value.toLowerCase();
-      const t0 = performance.now();
-
-      this.global = new Set(query.split(' '));
-      let results = this.search();
+      let results;
 
       if (query.length > 2) {
-        for (let index = 0; index < this.global.length; index += 1) {
-          const element = this.global[index];
-
-          results = results.findByGlobal(element);
-        }
-
+        this.global = new Set(query.split(' '));
+        const t0 = performance.now();
+        results = this.search();
         const t1 = performance.now();
         console.log(
           `La recherche native a demandé ${(t1 - t0).toFixed(2)}millisecondes`,
         );
       } else {
         this.global = new Set();
+        results = this.recipes;
       }
 
       this.refresh(results);
