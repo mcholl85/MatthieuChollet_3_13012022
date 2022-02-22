@@ -133,16 +133,12 @@ export default class Search {
 
     input.addEventListener('input', (event) => {
       const query = event.target.value.toLowerCase();
-      const t0 = performance.now();
-
-      this.global = new Set(query.split(' '));
-      let results = this.search();
+      let results;
 
       if (query.length > 2) {
-        this.global.forEach((data) => {
-          results = this.search().findByGlobal(data);
-        });
-
+        this.global = new Set(query.split(' '));
+        const t0 = performance.now();
+        results = this.search();
         const t1 = performance.now();
         console.log(
           `La recherche fonctionnelle a demandé ${(t1 - t0).toFixed(
@@ -151,6 +147,7 @@ export default class Search {
         );
       } else {
         this.global = new Set();
+        results = this.recipes;
       }
 
       this.refresh(results);
