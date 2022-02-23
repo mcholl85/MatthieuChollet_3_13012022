@@ -11,25 +11,15 @@ export default class Recipe {
   }
 
   ingredientsIncludes(search) {
-    let match = false;
-
-    this.ingredients.forEach((item) => {
-      if (item.ingredient.toLowerCase().includes(search.toLowerCase())) {
-        match = true;
-      }
-    });
-    return match;
+    return this.ingredients.some((item) =>
+      item.ingredient.toLowerCase().includes(search.toLowerCase()),
+    );
   }
 
   ustensilsIncludes(search) {
-    let match = false;
-
-    this.ustensils.forEach((ustensil) => {
-      if (ustensil.toLowerCase().includes(search.toLowerCase())) {
-        match = true;
-      }
-    });
-    return match;
+    return this.ustensils.some((item) =>
+      item.toLowerCase().includes(search.toLowerCase()),
+    );
   }
 
   applianceIncludes(search) {
