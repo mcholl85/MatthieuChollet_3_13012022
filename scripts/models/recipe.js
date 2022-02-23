@@ -11,29 +11,25 @@ export default class Recipe {
   }
 
   ingredientsIncludes(search) {
-    let match = false;
-
     for (let index = 0; index < this.ingredients.length; index += 1) {
       const element = this.ingredients[index].ingredient.toLowerCase();
 
       if (element.includes(search.toLowerCase())) {
-        match = true;
+        return true;
       }
     }
-    return match;
+    return false;
   }
 
   ustensilsIncludes(search) {
-    let match = false;
-
     for (let index = 0; index < this.ustensils.length; index += 1) {
       const element = this.ustensils[index].toLowerCase();
 
       if (element.includes(search.toLowerCase())) {
-        match = true;
+        return true;
       }
     }
-    return match;
+    return false;
   }
 
   applianceIncludes(search) {
