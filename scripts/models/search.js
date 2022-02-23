@@ -141,13 +141,14 @@ export default class Search {
       }
 
       const t0 = performance.now();
-      this.refresh(this.search());
+      const results = this.search();
       const t1 = performance.now();
       console.log(
         `La recherche fonctionnelle a demandé ${(t1 - t0).toFixed(
           2,
         )}millisecondes`,
       );
+      this.refresh(results);
     });
   }
 
