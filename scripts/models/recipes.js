@@ -44,6 +44,24 @@ export default class Recipes {
     );
   }
 
+  findByGlobalNative(search) {
+    const results = [];
+
+    for (let index = 0; index < this.recipes.length; index += 1) {
+      const element = this.recipes[index];
+
+      if (element.ingredientsIncludesNative(search)) {
+        results.push(element);
+      } else if (element.nameIncludes(search)) {
+        results.push(element);
+      } else if (element.descriptionIncludes(search)) {
+        results.push(element);
+      }
+    }
+
+    return new Recipes(results);
+  }
+
   ingredients() {
     return [
       ...new Set(

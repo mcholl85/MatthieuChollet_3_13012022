@@ -16,6 +16,17 @@ export default class Recipe {
     );
   }
 
+  ingredientsIncludesNative(search) {
+    for (let index = 0; index < this.ingredients.length; index += 1) {
+      const element = this.ingredients[index].ingredient.toLowerCase();
+
+      if (element.includes(search.toLowerCase())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   ustensilsIncludes(search) {
     return this.ustensils.some((item) =>
       item.toLowerCase().includes(search.toLowerCase()),

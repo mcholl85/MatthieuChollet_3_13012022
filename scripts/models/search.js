@@ -95,6 +95,38 @@ export default class Search {
     return results;
   }
 
+  searchNative() {
+    let results = this.recipes;
+
+    this.filters.forEach((filter) => {
+      if (filter.data.size > 0) {
+        if (filter.key === 'ingredients') {
+          filter.data.forEach((data) => {
+            results = results.findByIngredient(data);
+          });
+        }
+        if (filter.key === 'ustensils') {
+          filter.data.forEach((data) => {
+            results = results.findByUstensil(data);
+          });
+        }
+        if (filter.key === 'appareil') {
+          filter.data.forEach((data) => {
+            results = results.findByAppliance(data);
+          });
+        }
+      }
+    });
+
+    if (!this.global.length) {
+      this.global.forEach((data) => {
+        results = results.findByGlobalNative(data);
+      });
+    }
+
+    return results;
+  }
+
   searchFilters() {
     this.filters.forEach((filter) => {
       const wrapperFilter = document.getElementById(`filter-${filter.key}`);
@@ -128,28 +160,42 @@ export default class Search {
     });
   }
 
-  searchAll() {
-    const input = document.getElementById('global');
+  searchAll(event) {
+    const query = event.target.value.toLowerCase();
 
-    input.addEventListener('input', (event) => {
-      const query = event.target.value.toLowerCase();
+    if (query.length > 2) {
+      this.global = new Set(query.split(' '));
+    } else {
+      this.global = new Set();
+    }
 
-      if (query.length > 2) {
-        this.global = new Set(query.split(' '));
-      } else {
-        this.global = new Set();
-      }
+    const t0 = performance.now();
+    const results = this.search();
+    const t1 = performance.now();
+    console.log(
+      `La recherche fonctionnelle a demandé ${(t1 - t0).toFixed(
+        2,
+      )}millisecondes`,
+    );
+    this.refresh(results);
+  }
 
-      const t0 = performance.now();
-      const results = this.search();
-      const t1 = performance.now();
-      console.log(
-        `La recherche fonctionnelle a demandé ${(t1 - t0).toFixed(
-          2,
-        )}millisecondes`,
-      );
-      this.refresh(results);
-    });
+  searchAllNative(event) {
+    const query = event.target.value.toLowerCase();
+
+    if (query.length > 2) {
+      this.global = new Set(query.split(' '));
+    } else {
+      this.global = new Set();
+    }
+
+    const t0 = performance.now();
+    const results = this.searchNative();
+    const t1 = performance.now();
+    console.log(
+      `La recherche native a demandé ${(t1 - t0).toFixed(2)}millisecondes`,
+    );
+    this.refresh(results);
   }
 
   removeKeyWord(keyWord, filter) {
