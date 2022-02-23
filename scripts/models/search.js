@@ -133,24 +133,21 @@ export default class Search {
 
     input.addEventListener('input', (event) => {
       const query = event.target.value.toLowerCase();
-      let results;
 
       if (query.length > 2) {
         this.global = new Set(query.split(' '));
-        const t0 = performance.now();
-        results = this.search();
-        const t1 = performance.now();
-        console.log(
-          `La recherche fonctionnelle a demandé ${(t1 - t0).toFixed(
-            2,
-          )}millisecondes`,
-        );
       } else {
         this.global = new Set();
-        results = this.recipes;
       }
 
-      this.refresh(results);
+      const t0 = performance.now();
+      this.refresh(this.search());
+      const t1 = performance.now();
+      console.log(
+        `La recherche fonctionnelle a demandé ${(t1 - t0).toFixed(
+          2,
+        )}millisecondes`,
+      );
     });
   }
 
