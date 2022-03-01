@@ -21,14 +21,17 @@ export default class Search {
     this.global = new Set();
   }
 
+  // return the object filter with the key
   getFilter(element) {
     return this.filters.find((filter) => filter.key === element);
   }
 
+  // return the object filter's data with the key
   getDataFilter(element) {
     return this.getFilter(element).data;
   }
 
+  // return the array of elements(ingredients, ustensils or appliance) filtered
   getElementsByFilter(filterKey) {
     if (filterKey === 'ingredients') {
       return this.search()
@@ -63,6 +66,7 @@ export default class Search {
     return new Error('wrong filterKey');
   }
 
+  // method to get recipes filtered by filters and global
   search() {
     let results = this.recipes;
 
@@ -127,6 +131,7 @@ export default class Search {
     return results;
   }
 
+  // apply method search elements into filters
   searchFilters() {
     this.filters.forEach((filter) => {
       const wrapperFilter = document.getElementById(`filter-${filter.key}`);
@@ -160,6 +165,7 @@ export default class Search {
     });
   }
 
+  // add values into global and refresh filters and recipes on page
   searchAll(event) {
     const query = event.target.value.toLowerCase();
 
@@ -198,6 +204,7 @@ export default class Search {
     this.refresh(results);
   }
 
+  // apply addListener to remove keyword on click and refresh
   removeKeyWord(keyWord, filter) {
     const wrapperKeyword = document.getElementById('keyword');
     const keyWordTxt = keyWord.querySelector('small').innerText.toLowerCase();
@@ -209,6 +216,7 @@ export default class Search {
     });
   }
 
+  // apply addListener to create keyword and refresh
   createKeyWord(link, filter) {
     const wrapperKeyword = document.getElementById('keyword');
 
@@ -223,6 +231,7 @@ export default class Search {
     });
   }
 
+  // display the list of elements of a filter
   createFilter(filter) {
     const wrapperFilter = document.getElementById(`filter-${filter.key}`);
     const elements = this.getElementsByFilter(filter.key);
@@ -243,12 +252,14 @@ export default class Search {
     }
   }
 
+  // display the list of elements of each filter
   createFilters() {
     this.filters.forEach((filter) => {
       this.createFilter(filter);
     });
   }
 
+  // method to display the list of up-to-date recipes and filters
   refresh(Recipes) {
     this.createFilters();
     RecipeCard.createRecipes(Recipes);
